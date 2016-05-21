@@ -13,7 +13,7 @@ Pour compiler les projets par ligne de commande :<br />
 
 #### Les étapes pour exécuter le projet :
 
-###### 1 - Lancer le serveur http
+###### 1 - Lancer le serveur HTTP
 Dans le dossier <i>classserver</i> :<br />
 ```$ java classserver.ClassFileServer portServeurHTTP "../Serveur-Miniprojet/bin/object/"```
 
@@ -23,7 +23,7 @@ Dans le dossier <i>MyRMIRegistry</i> :<br />
 
 ###### 3 - Lancer notre version du RMIRegistry
 Toujours dans <i>MyRMIRegistry</i> :<br />
-```$ java main.Main -Djava.rmi.server.codebase="URL serveur HTTP"```
+```$ java main.Main -Djava.rmi.server.codebase="URL serveur HTTP" -Djava.security.policy="../../Serveur-Miniprojet/policy.txt"```
 
 ###### 4 - Lancer le serveur RMI de l'application
 Dans le dossier <i>Serveur-Miniprojet</i> :<br />
