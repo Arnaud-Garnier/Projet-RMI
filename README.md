@@ -9,6 +9,7 @@ Pour compiler les projets par ligne de commande :<br />
 #### Exemple d'utilisation de l'application :
 <br />
 <img alt="figure1" src="images/figure1.png" />
+<br />
 
 #### Les étapes pour exécuter le projet :
 
