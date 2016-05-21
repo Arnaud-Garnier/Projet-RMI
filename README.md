@@ -6,6 +6,10 @@ Membres du binôme :
 Pour compiler les projets par ligne de commande :<br />
 ```$ ant```
 
+#### Exemple d'utilisation de l'application :
+<br />
+<img alt="figure1" src="images/figure1.png" />
+
 #### Les étapes pour exécuter le projet :
 
 ###### 1 - Lancer le serveur http
