@@ -22,10 +22,10 @@ public class Serveur {
 		ObjetDistant od;
 		try {
 			od = new ObjetDistant();
-			MyRMIRegistry reg = LocateRegistry.getRegistry(rmiPort);
-			reg.rebind("ObjDist", od);
-		} catch (RemoteException re) {
-			System.err.println(re.getCause().getMessage());
+			Registry reg = LocateRegistry.getRegistry(rmiPort);
+			reg.lookup("MyRMI");
+		} catch (Exception e) {
+			System.err.println(e.getCause().getMessage());
 		}
 	}
 
