@@ -25,7 +25,7 @@ public class Serveur {
 			Registry reg = LocateRegistry.getRegistry(rmiPort);
 			reg.lookup("MyRMI");
 		} catch (Exception e) {
-			System.err.println(e.getCause().getMessage());
+			System.err.println(e);
 		}
 	}
 
