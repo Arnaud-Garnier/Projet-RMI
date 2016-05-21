@@ -18,7 +18,7 @@ Dans le dossier <i>MyRMIRegistry</i> :<br />
 
 ###### 3 - Lancer notre version du RMIRegistry
 Toujours dans <i>MyRMIRegistry</i> :<br />
-```$ java Main -Djava.rmi.server.codebase="URL serveur HTTP"```
+```$ java main.Main -Djava.rmi.server.codebase="URL serveur HTTP"```
 
 ###### 4 - Lancer le serveur RMI de l'application
 Dans le dossier <i>Serveur-Miniprojet</i> :<br />
