@@ -3,6 +3,7 @@ package main;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import object.Distante;
 import object.Fougere;
 
 /**
