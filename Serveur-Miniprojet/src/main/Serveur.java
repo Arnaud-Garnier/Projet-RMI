@@ -22,7 +22,7 @@ public class Serveur {
 		ObjetDistant od;
 		try {
 			od = new ObjetDistant();
-			Registry reg = LocateRegistry.getRegistry(rmiPort);
+			MyRMIRegistry reg = LocateRegistry.getRegistry(rmiPort);
 			reg.rebind("ObjDist", od);
 		} catch (RemoteException re) {
 			System.err.println(re.getCause().getMessage());
