@@ -14,7 +14,7 @@ Pour compiler les projets par ligne de commande :<br />
 #### Les étapes pour exécuter le projet (pour le téléchargement dynamique de classes) :
 
 ###### 1 - Lancer le RMIRegistry
-Lancer dans n'importe quel dossier le rmiregistry :
+Lancer dans n'importe quel dossier le rmiregistry :<br />
 ```$ rmiregistry 1098 -J-Djava.rmi.server.useCodebaseOnly=false```
 
 ###### 2 - Lancer le serveur HTTP
