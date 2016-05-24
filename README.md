@@ -15,7 +15,7 @@ Pour compiler les projets par ligne de commande :<br />
 
 ###### 1 - Lancer le RMIRegistry
 Lancer dans n'importe quel dossier le rmiregistry :<br />
-```$ rmiregistry 1098 -J-Djava.rmi.server.useCodebaseOnly=false```
+```$ rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false 1098```
 
 ###### 2 - Lancer le serveur HTTP
 Dans le dossier <i>classserver</i> :<br />
@@ -23,4 +23,4 @@ Dans le dossier <i>classserver</i> :<br />
 
 ###### 3 - Lancer le serveur de l'application RMI
 Dans le dossier <i>Serveur-Miniprojet</i> :<br />
-```$ java main.Main -Djava.rmi.server.useCodebaseOnly=false -Djava.rmi.server.codebase="http://localhost:4000/"```
+```$ java main.Main -Djava.rmi.server.codebase="http://localhost:4000/"```
