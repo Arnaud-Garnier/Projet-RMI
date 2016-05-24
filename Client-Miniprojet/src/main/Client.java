@@ -9,7 +9,10 @@ import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.TextMessage;
 
+import object.Distante;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.camel.processor.idempotent.NoMessageIdException;
 
 /**
  * Une implémentation de client pour se connecter au serveur
@@ -21,6 +24,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		try {
+			System.out.println("Bienvenue, quel est votre nom ? ");
 			String monNom = (new Scanner(System.in).nextLine());
 			
 			Registry reg = LocateRegistry.getRegistry("localhost", 1098);
@@ -39,11 +43,18 @@ public class Client {
 					javax.jms.Session.AUTO_ACKNOWLEDGE);
 			javax.jms.Queue queue = sps.createQueue("Queue."+monNom);
 			javax.jms.MessageConsumer receiver = sps.createConsumer(queue);
-			while(true) {
+			
+			conn.start();
+			
+			while (true) {
 				TextMessage tm = (TextMessage) receiver.receive();
-				System.out.println(tm);
+				
+				System.out.println(monNom + ", vous avez reçu un message ! Le voici : \n  ----");
 				System.out.println(tm.getText());
+				System.out.println("  ----" );
 			}
+			
+			
 			
 			
 		} catch (Exception e) {

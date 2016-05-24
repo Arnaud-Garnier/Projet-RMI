@@ -42,7 +42,7 @@ public class ObjetDistant extends UnicastRemoteObject implements Distante {
 	}
 
 	@Override
-	public void sabonnerFougereMag(String nomClient) {
+	public void sabonnerFougereMag(String nomClient) throws RemoteException, JMSException {
 		/**** JMS ****/
         
         // Trouver l'objet ConnectionFactory -> là où sera la queue
@@ -57,8 +57,11 @@ public class ObjetDistant extends UnicastRemoteObject implements Distante {
 					javax.jms.Session.AUTO_ACKNOWLEDGE);
 			javax.jms.Queue queue = sps.createQueue("Queue."+nomClient);
 			MessageProducer sender = sps.createProducer(queue);
+			
+			
+			
 
-			conn.start();
+			
 			
 			TextMessage m = sps.createTextMessage();
 			m.setText("Les fougères comportent environ 13000 espèces.");
@@ -68,13 +71,7 @@ public class ObjetDistant extends UnicastRemoteObject implements Distante {
 			m2.setText("Les fougères peuvent être assez nombreuses pour former un ensemble végétal appelé fougeraie.");
 			sender.send(m2);
 			
-			
-			javax.jms.MessageConsumer receiver = sps.createConsumer(queue);
-			while(true) {
-				TextMessage tm = (TextMessage) receiver.receive();
-				System.out.println(tm);
-				System.out.println(tm.getText());
-			}
+			conn.start();
 			
 		} catch (JMSException e) {
 			e.printStackTrace();

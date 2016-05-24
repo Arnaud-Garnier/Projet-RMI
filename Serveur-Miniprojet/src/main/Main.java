@@ -14,5 +14,4 @@ public class Main {
 		System.out.println("Port du rmiregistry : " + port);
 		new Serveur(port);
 	}
-
 }
