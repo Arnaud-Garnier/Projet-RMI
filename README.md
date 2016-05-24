@@ -19,7 +19,7 @@ Lancer dans n'importe quel dossier le rmiregistry :<br />
 
 ###### 2 - Lancer le serveur HTTP
 Dans le dossier <i>classserver</i> :<br />
-```$ java classserver.ClassFileServer 4000 "../Serveur-Miniprojet/bin/"```
+```$ java classserver.ClassFileServer 4000 ../Serveur-Miniprojet/bin/```
 
 ###### 3 - Lancer le serveur de l'application RMI
 Dans le dossier <i>Serveur-Miniprojet</i> :<br />
