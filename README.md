@@ -23,4 +23,4 @@ Dans le dossier <i>classserver</i> :<br />
 
 ###### 3 - Lancer le serveur de l'application RMI
 Dans le dossier <i>Serveur-Miniprojet</i> :<br />
-```$ java main.Main -Djava.rmi.server.codebase="http://localhost:4000/"```
+```$ java -Djava.rmi.server.codebase="http://localhost:4000/" main.Main ```
