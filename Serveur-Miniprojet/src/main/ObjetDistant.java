@@ -3,6 +3,13 @@ package main;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import javax.jms.Connection;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.TextMessage;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+
 import object.Distante;
 import object.Fougere;
 
@@ -34,4 +41,44 @@ public class ObjetDistant extends UnicastRemoteObject implements Distante {
 		return f.toString() + " ; The RMI is working well";
 	}
 
+	@Override
+	public void sabonnerFougereMag(String nomClient) {
+		/**** JMS ****/
+        
+        // Trouver l'objet ConnectionFactory -> là où sera la queue
+        javax.jms.ConnectionFactory connectionf = new ActiveMQConnectionFactory(
+				"user", "user", "tcp://localhost:61616");
+
+		try {
+            // Créer une connexion JMS
+			Connection conn;
+			conn = connectionf.createConnection("user", "user");
+			javax.jms.Session sps = conn.createSession(false,
+					javax.jms.Session.AUTO_ACKNOWLEDGE);
+			javax.jms.Queue queue = sps.createQueue("Queue."+nomClient);
+			MessageProducer sender = sps.createProducer(queue);
+
+			conn.start();
+			
+			TextMessage m = sps.createTextMessage();
+			m.setText("Les fougères comportent environ 13000 espèces.");
+			sender.send(m);
+			
+			TextMessage m2 = sps.createTextMessage();
+			m2.setText("Les fougères peuvent être assez nombreuses pour former un ensemble végétal appelé fougeraie.");
+			sender.send(m2);
+			
+			
+			javax.jms.MessageConsumer receiver = sps.createConsumer(queue);
+			while(true) {
+				TextMessage tm = (TextMessage) receiver.receive();
+				System.out.println(tm);
+				System.out.println(tm.getText());
+			}
+			
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

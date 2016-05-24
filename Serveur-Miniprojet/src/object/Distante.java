@@ -12,5 +12,7 @@ import java.rmi.RemoteException;
 public interface Distante extends Remote {
 
 	public String saySomething() throws RemoteException;
+	
+	public void sabonnerFougereMag(String nomClient);
 
 }
