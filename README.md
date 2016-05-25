@@ -13,6 +13,10 @@ Pour compiler les projets par ligne de commande :<br />
 
 #### Les étapes pour exécuter le projet :
 
+###### 0 - Lancer ActiveMQ
+Lancer le script dans le <i>bin</i> du dossier apache-activemq-5.13.2 :<br />
+```$ ./activemq start```
+
 ###### 1 - Lancer le RMIRegistry
 Lancer dans n'importe quel dossier le RMI registry :<br />
 ```$ rmiregistry -J-Djava.rmi.server.useCodebaseOnly=false 1098```
