@@ -24,9 +24,10 @@ public class Client {
 
 	public static void main(String[] args) {
 		try {
-			System.out.println("Bienvenue, quel est votre nom ? ");
+			System.out.println("Bienvenue, quel est votre nom ? (pour nommer la queue) ");
 			String monNom = (new Scanner(System.in).nextLine());
 			
+			// Recherche de l'objet distant
 			Registry reg = LocateRegistry.getRegistry("localhost", 1098);
 			Distante id = (Distante) reg.lookup("ObjDist");
 			System.out.println(id.saySomething());
@@ -34,7 +35,7 @@ public class Client {
 			// Abonnement au magazine sur les fougères de Distante
 			id.sabonnerFougereMag(monNom);
 			
-			//oijfz
+			// Recherche de la queue
 	        javax.jms.ConnectionFactory connectionf = new ActiveMQConnectionFactory(
 					"user", "user", "tcp://localhost:61616");
 			Connection conn;
@@ -44,6 +45,7 @@ public class Client {
 			javax.jms.Queue queue = sps.createQueue("Queue."+monNom);
 			javax.jms.MessageConsumer receiver = sps.createConsumer(queue);
 			
+			// Lancement de la connection
 			conn.start();
 			
 			while (true) {
@@ -51,11 +53,7 @@ public class Client {
 				
 				System.out.println(monNom + ", vous avez reçu un message ! Le voici : \n  ----");
 				System.out.println(tm.getText());
-				System.out.println("  ----" );
 			}
-			
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

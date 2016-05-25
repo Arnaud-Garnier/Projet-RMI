@@ -1,15 +1,12 @@
 package main;
 
-import java.rmi.RemoteException;
+import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
-import javax.jms.Connection;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.TextMessage;
+import object.Distante;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  * Le serveur de l'application
@@ -28,13 +25,24 @@ public class Serveur {
 	public Serveur(int rmiPort) {
 		ObjetDistant od;
 		try {
+			od = new ObjetDistant();
+			
+			// Teste du RMI regsitry de Java
+			Registry reg = LocateRegistry.getRegistry("localhost", 1098);
+			reg.rebind("ObjDist", od);
+			
 			/**** RMI ****/
 			
-			od = new ObjetDistant();
-                        Registry reg = LocateRegistry.getRegistry("localhost", 1098);
-			IMyRMIRegistry myReg = (IMyRMIRegistry) reg.lookup("MyRMI");
-			reg.rebind("ObjDist", od);
-            System.out.println(myReg.list());
+
+			// Chargement du registre RMI universel implémenté
+			IMyRMIRegistry myReg = (IMyRMIRegistry) Naming.lookup("rmi://localhost:1098/MyRMI");
+			
+			// Côté MyRMIRegistry, on voit que la taille de la hashmap est 0
+			myReg.lookup("rmi://localhost:1098/ObjDist");
+			// On bind un ObjetDistant
+			myReg.bind("ObjDist", od);
+			// Côté MyRMIRegistry, on voit que la taille de la hashmap est 1 !
+			myReg.lookup("rmi://localhost:1098/ObjDist");
             
 		} catch (Exception e) {
 			System.err.println(e);

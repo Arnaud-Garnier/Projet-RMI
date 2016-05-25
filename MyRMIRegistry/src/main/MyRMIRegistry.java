@@ -13,6 +13,7 @@ public class MyRMIRegistry {
 			rd = new RMIDistant();
 			Registry reg = LocateRegistry.getRegistry(rmiPort);
 			reg.rebind("MyRMI", rd);
+			System.out.println("MyRMIRegistry lancé.");
 		} catch (RemoteException re) {
 			System.err.println(re.getCause().getMessage());
 		}
